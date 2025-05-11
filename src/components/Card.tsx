@@ -1,5 +1,6 @@
 import { use$ } from '@legendapp/state/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'preact/hooks'
 import { css } from 'styled-system/css'
 
 import { type Place, globalState$ } from '~/app'
@@ -8,7 +9,7 @@ export default function Card({
   place,
   selectedCard,
   setSelectedCard,
-  setShowConfetti
+  setShowConfetti,
 }: {
   place: Place
   selectedCard: number
@@ -16,10 +17,14 @@ export default function Card({
   setShowConfetti: (bool: boolean) => void
 }) {
   const state = use$(globalState$[place.id])
+  const [animate, setAnimate] = useState(false)
 
   const completeHandler = () => {
     setShowConfetti(true)
+    setAnimate(true)
     globalState$[place.id].set('unlocked')
+
+    setTimeout(() => setAnimate(false), 0)
   }
 
   return (
@@ -65,7 +70,15 @@ export default function Card({
             alignItems: 'center',
           })}
         >
-          {place.stamp ? <img src={place.stamp} class={css({ filter: 'grayscale(100%)' })} /> : <div class={css({ color: 'gray.400' })}>No Image</div>}
+          {place.stamp ? (
+            <img
+              alt={place.name}
+              src={place.stamp}
+              class={css(state !== 'unlocked' && { filter: 'grayscale(100%)' })}
+            />
+          ) : (
+            <div class={css({ color: 'gray.400' })}>No Image</div>
+          )}
         </div>
         <div>
           {place.name.split('\n').map((name, i) => (
@@ -128,13 +141,42 @@ export default function Card({
                   Tap to stamp here!
                 </div>
               ) : state === 'unlocked' ? (
-                <div>stamp</div>
-              ) : (
-                place.stamp ? <img src={place.stamp} class={css({ filter: 'grayscale(100%)' })} /> : (
+                place.stamp ? (
+                  <motion.img
+                    alt={place.name}
+                    variants={{
+                      initial: animate
+                        ? { scale: 1.2, opacity: 0 }
+                        : { scale: 1, opacity: 1 },
+                      animate: {
+                        scale: 1,
+                        opacity: 1,
+                        transition: {
+                          type: 'spring',
+                          stiffness: 500,
+                          damping: 15,
+                        },
+                      },
+                    }}
+                    initial="initial"
+                    animate={animate ? 'animate' : 'initial'}
+                    src={place.stamp}
+                  />
+                ) : (
                   <div class={css({ color: 'gray.400', fontSize: '1.5rem' })}>
                     No Image
                   </div>
                 )
+              ) : place.stamp ? (
+                <img
+                  alt={place.name}
+                  src={place.stamp}
+                  class={css({ filter: 'grayscale(100%)' })}
+                />
+              ) : (
+                <div class={css({ color: 'gray.400', fontSize: '1.5rem' })}>
+                  No Image
+                </div>
               )}
             </div>
             <div>

@@ -1,11 +1,10 @@
 import { observable } from '@legendapp/state'
 import { useEffect, useState } from 'preact/hooks'
+import ReactConfetti from 'react-confetti'
 import { useCookies } from 'react-cookie'
 import { css } from 'styled-system/css'
-import ReactConfetti from 'react-confetti'
-import youareanidiot from '~/assets/s-l400.jpg'
-import xp from '~/assets/OIP.jpg'
 
+import hfhs from '~/assets/OIP.jpg'
 import Card from '~/components/Card'
 import Progress from '~/components/Progress'
 
@@ -52,7 +51,7 @@ const places: Place[] = [
       lon: 0,
     },
     scope: 0,
-    stamp: youareanidiot,
+    stamp: null,
   },
   {
     id: 1,
@@ -62,7 +61,7 @@ const places: Place[] = [
       lon: 130.385556,
     },
     scope: 500,
-    stamp: xp,
+    stamp: null,
   },
   {
     id: 2,
@@ -194,6 +193,16 @@ const places: Place[] = [
     scope: 10000, // 村全体の広がりとして
     stamp: null,
   },
+  {
+    id: 15,
+    name: 'DEV:東福高\nDEV:HFHS',
+    coord: {
+      lat: 33.5943486,
+      lon: 130.430943,
+    },
+    scope: 500,
+    stamp: hfhs,
+  },
 ]
 
 export default function App() {
@@ -262,9 +271,7 @@ export default function App() {
               ) &&
               globalState$[place.id].peek() === undefined
             ) {
-              console.log(globalState$.peek())
               globalState$[place.id].set('pending')
-              console.log(place.id)
             }
           }
         },
@@ -302,14 +309,17 @@ export default function App() {
       })}
     >
       {showConfetti ? (
-        <div class={css({
-          position: 'fixed',
-          zIndex: 150,
-          width: '100dvw',
-          height: '100dvh',
-          top: 0,
-          left: 0
-        })}>
+        <div
+          class={css({
+            position: 'fixed',
+            zIndex: 150,
+            width: '100dvw',
+            height: '100dvh',
+            top: 0,
+            left: 0,
+            pointerEvents: 'none',
+          })}
+        >
           <ReactConfetti
             width={window.innerWidth}
             height={window.innerHeight}
@@ -322,7 +332,7 @@ export default function App() {
               x: window.innerWidth / 2,
               y: window.innerHeight,
               w: 0,
-              h: 0
+              h: 0,
             }}
             tweenDuration={3000}
             onConfettiComplete={() => setShowConfetti(false)}

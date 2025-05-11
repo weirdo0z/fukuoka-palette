@@ -32,6 +32,9 @@ export default function Card({
       <motion.div
         layoutId={`card-${place.id}`}
         class={css({
+          sm: {
+            width: '22dvw'
+          },
           width: 'calc(50% - 0.5rem)',
           height: '30%',
           borderRadius: '1rem',
@@ -101,7 +104,7 @@ export default function Card({
             layoutId={`card-${place.id}`}
             class={css({
               position: 'fixed',
-              width: '80%',
+              width: '75%',
               height: '60%',
               borderRadius: '1rem',
               bgColor: 'bg.dent',

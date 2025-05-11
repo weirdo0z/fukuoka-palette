@@ -3,6 +3,8 @@ import { useEffect, useState } from 'preact/hooks'
 import { useCookies } from 'react-cookie'
 import { css } from 'styled-system/css'
 import ReactConfetti from 'react-confetti'
+import youareanidiot from '~/assets/s-l400.jpg'
+import xp from '~/assets/OIP.jpg'
 
 import Card from '~/components/Card'
 import Progress from '~/components/Progress'
@@ -19,7 +21,7 @@ export interface Place {
     lon: number
   }
   scope: number // meter(s)
-  img: string | null
+  stamp: string | null
 }
 
 /*
@@ -50,7 +52,7 @@ const places: Place[] = [
       lon: 0,
     },
     scope: 0,
-    img: null,
+    stamp: youareanidiot,
   },
   {
     id: 1,
@@ -60,7 +62,7 @@ const places: Place[] = [
       lon: 130.385556,
     },
     scope: 500,
-    img: null,
+    stamp: xp,
   },
   {
     id: 2,
@@ -70,7 +72,7 @@ const places: Place[] = [
       lon: 130.360556,
     },
     scope: 500,
-    img: null,
+    stamp: null,
   },
   {
     id: 3,
@@ -80,7 +82,7 @@ const places: Place[] = [
       lon: 0,
     },
     scope: 100, // 一般的な範囲として
-    img: null,
+    stamp: null,
   },
   {
     id: 4,
@@ -90,7 +92,7 @@ const places: Place[] = [
       lon: 130.217222,
     },
     scope: 300,
-    img: null,
+    stamp: null,
   },
   {
     id: 5,
@@ -100,7 +102,7 @@ const places: Place[] = [
       lon: 130.876111,
     },
     scope: 400,
-    img: null,
+    stamp: null,
   },
   {
     id: 6,
@@ -110,7 +112,7 @@ const places: Place[] = [
       lon: 130.8,
     },
     scope: 1000, // 平尾台全体の広がりとして
-    img: null,
+    stamp: null,
   },
   {
     id: 7,
@@ -120,7 +122,7 @@ const places: Place[] = [
       lon: 130.541667,
     },
     scope: 300,
-    img: null,
+    stamp: null,
   },
   {
     id: 8,
@@ -130,7 +132,7 @@ const places: Place[] = [
       lon: 0,
     },
     scope: 50, // 個々の店舗の範囲として
-    img: null,
+    stamp: null,
   },
   {
     id: 9,
@@ -140,7 +142,7 @@ const places: Place[] = [
       lon: 130.688889,
     },
     scope: 200,
-    img: null,
+    stamp: null,
   },
   {
     id: 10,
@@ -150,7 +152,7 @@ const places: Place[] = [
       lon: 130.433333,
     },
     scope: 2000, // 山全体の広がりとして
-    img: null,
+    stamp: null,
   },
   {
     id: 11,
@@ -160,7 +162,7 @@ const places: Place[] = [
       lon: 130.833333,
     },
     scope: 1500, // 山全体の広がりとして
-    img: null,
+    stamp: null,
   },
   {
     id: 12,
@@ -170,7 +172,7 @@ const places: Place[] = [
       lon: 130.795833,
     },
     scope: 300,
-    img: null,
+    stamp: null,
   },
   {
     id: 13,
@@ -180,7 +182,7 @@ const places: Place[] = [
       lon: 0,
     },
     scope: 5000, // 八女市全体の茶畑の広がりとして
-    img: null,
+    stamp: null,
   },
   {
     id: 14,
@@ -190,7 +192,7 @@ const places: Place[] = [
       lon: 130.716667,
     },
     scope: 10000, // 村全体の広がりとして
-    img: null,
+    stamp: null,
   },
 ]
 

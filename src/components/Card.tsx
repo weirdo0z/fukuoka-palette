@@ -65,7 +65,7 @@ export default function Card({
             alignItems: 'center',
           })}
         >
-          {place.img || <div class={css({ color: 'gray.400' })}>No Image</div>}
+          {place.stamp ? <img src={place.stamp} class={css({ filter: 'grayscale(100%)' })} /> : <div class={css({ color: 'gray.400' })}>No Image</div>}
         </div>
         <div>
           {place.name.split('\n').map((name, i) => (
@@ -130,7 +130,7 @@ export default function Card({
               ) : state === 'unlocked' ? (
                 <div>stamp</div>
               ) : (
-                place.img || (
+                place.stamp ? <img src={place.stamp} class={css({ filter: 'grayscale(100%)' })} /> : (
                   <div class={css({ color: 'gray.400', fontSize: '1.5rem' })}>
                     No Image
                   </div>

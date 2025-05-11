@@ -1,0 +1,29 @@
+{
+  "name": "fukuoka-palette",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "check": "biome check --write"
+  },
+  "dependencies": {
+    "@legendapp/state": "^3.0.0-beta.30",
+    "motion": "^12.10.5",
+    "preact": "^10.26.5",
+    "react-confetti": "^6.4.0",
+    "react-cookie": "^8.0.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@pandacss/dev": "^0.53.6",
+    "@preact/preset-vite": "^2.10.1",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  },
+  "trustedDependencies": ["@biomejs/biome", "esbuild"]
+}

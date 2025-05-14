@@ -249,7 +249,7 @@ export default function App() {
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
       const distance = R * c
 
-      return true // distance <= scope
+      return distance <= scope
     }
 
     const checkPosition = () => {

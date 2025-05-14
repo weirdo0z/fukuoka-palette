@@ -211,6 +211,7 @@ export default function App() {
   const [showConfetti, setShowConfetti] = useState(false)
 
   useEffect(() => {
+    console.log('setting globalstate')
     globalState$.set(cookies.globalState)
   }, [cookies])
 
@@ -248,7 +249,7 @@ export default function App() {
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
       const distance = R * c
 
-      return distance <= scope
+      return true // distance <= scope
     }
 
     const checkPosition = () => {
